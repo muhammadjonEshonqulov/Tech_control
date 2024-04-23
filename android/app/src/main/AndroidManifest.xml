@@ -1,7 +1,9 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="TODO">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:label="tech_control"
+        android:label="Tech control"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 

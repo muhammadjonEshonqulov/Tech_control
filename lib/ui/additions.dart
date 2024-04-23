@@ -33,11 +33,9 @@ class _AdditionScreenState extends State<AdditionScreen> {
 
   @override
   void initState() {
-    // Future.delayed(Duration.zero, () {
     provider = Provider.of<AdditionalProvider>(context, listen: false);
     provider.status = "getAdditional";
     provider.getAdditional(widget.id);
-    // });
     super.initState();
   }
 

@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:tech_control/app/router.dart';
@@ -13,10 +13,12 @@ import '../provider/login_provider.dart';
 class App extends StatelessWidget {
   final Repository repository;
   final NetworkResult state;
+
   const App({super.key, required this.repository, required this.state});
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: Color(0xff3E67B7)));
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => LoginProvider(repository)),

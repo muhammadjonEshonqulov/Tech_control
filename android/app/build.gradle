@@ -13,19 +13,28 @@ if (localPropertiesFile.exists()) {
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
-}
+//if (flutterVersionCode == null) {
+    flutterVersionCode = '6'
+//}
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
-if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
-}
+//if (flutterVersionName == null) {
+    flutterVersionName = '1.0.6'
+//}
 
 android {
-    namespace "uz.tech.control.tech_control"
-    compileSdkVersion flutter.compileSdkVersion
+    namespace "uz.tech.control"
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
+
+    signingConfigs {
+        playStoreConfig {
+            storeFile file('/Users/macbookpro/StudioProjects/tech_control/android/TechControl.jks')
+            storePassword 'RTTMTechControl123123123'
+            keyAlias 'key_RTTM_tech_control'
+            keyPassword 'RTTMTechControl123123123'
+        }
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -42,20 +51,23 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "uz.tech.control.tech_control"
+        applicationId "uz.tech.control"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 20
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
 
     buildTypes {
+        debug {
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.playStoreConfig
+            multiDexEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
